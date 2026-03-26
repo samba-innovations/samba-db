@@ -1,0 +1,52 @@
+# =============================================================================
+# SAMBA DB — Banco de dados mestre compartilhado
+# =============================================================================
+# Um único PostgreSQL com múltiplos schemas:
+#   samba_school  → dados mestre (users, students, classes, disciplines)
+#   samba_code    → ocorrências e notificações
+#   samba_edvance → simulados, questões, blueprints
+#
+# Uso:
+#   docker compose up -d          → sobe o banco
+#   docker compose down           → para (dados preservados)
+#   docker compose down -v        → para e APAGA tudo (CUIDADO)
+#   docker compose logs -f db     → logs em tempo real
+#
+# Conexão (host):
+#   postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/samba_db
+# =============================================================================
+
+services:
+
+  db:
+    image: postgres:15-alpine
+    container_name: samba_db
+    environment:
+      POSTGRES_USER:     ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-samba2025}
+      POSTGRES_DB:       ${POSTGRES_DB:-samba_db}
+    ports:
+      - "5433:5432"
+    volumes:
+      - samba_db_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - ./config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+    command: postgres -c hba_file=/etc/postgresql/pg_hba.conf
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-samba_db}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - samba_network
+
+volumes:
+  samba_db_data:
+    name: samba_db_data
+
+networks:
+  samba_network:
+    name: samba_network
+    driver: bridge
