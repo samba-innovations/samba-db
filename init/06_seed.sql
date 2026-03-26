@@ -497,3 +497,25 @@ BEGIN
     END LOOP;
 END;
 $$;
+
+-- ---------------------------------------------------------------------------
+-- Usuários administradores do sistema
+-- ---------------------------------------------------------------------------
+
+INSERT INTO samba_school.users (name, email, password_hash, is_active, must_change_password, is_admin)
+VALUES
+    ('M. Afonso',   'm.afonso@escolacabral.com.br',  crypt('Admin@2025', gen_salt('bf')), true, true, true),
+    ('V. Bertuzzo', 'v.bertuzzo@escolacabral.com.br', crypt('Admin@2025', gen_salt('bf')), true, true, true)
+ON CONFLICT (email) DO UPDATE SET
+    is_admin             = true,
+    must_change_password = true,
+    is_active            = true,
+    password_hash        = crypt('Admin@2025', gen_salt('bf'));
+
+INSERT INTO samba_school.user_roles (user_id, role_id)
+SELECT u.id, r.id
+FROM samba_school.users u
+CROSS JOIN samba_school.roles r
+WHERE u.email IN ('m.afonso@escolacabral.com.br', 'v.bertuzzo@escolacabral.com.br')
+  AND r.name = 'ADMIN'
+ON CONFLICT DO NOTHING;

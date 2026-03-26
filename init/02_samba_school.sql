@@ -42,6 +42,7 @@ CREATE TABLE samba_school.users (
     password_hash        VARCHAR(255) NOT NULL,
     is_active            BOOLEAN      NOT NULL DEFAULT TRUE,
     must_change_password BOOLEAN      NOT NULL DEFAULT FALSE,
+    is_admin             BOOLEAN      NOT NULL DEFAULT FALSE,
     created_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
@@ -56,6 +57,20 @@ CREATE TABLE samba_school.user_roles (
     role_id INTEGER NOT NULL REFERENCES samba_school.roles(id) ON DELETE CASCADE,
     PRIMARY KEY (user_id, role_id)
 );
+
+-- ---------------------------------------------------------------------------
+-- user_project_access — controle de acesso por projeto
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE samba_school.user_project_access (
+    user_id    INTEGER     NOT NULL REFERENCES samba_school.users(id) ON DELETE CASCADE,
+    project    VARCHAR(30) NOT NULL CHECK (project IN ('code', 'edvance', 'flourish')),
+    granted_by INTEGER     REFERENCES samba_school.users(id) ON DELETE SET NULL,
+    granted_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    PRIMARY KEY (user_id, project)
+);
+
+CREATE INDEX ix_user_project_access_user ON samba_school.user_project_access (user_id);
 
 -- ---------------------------------------------------------------------------
 -- refresh_tokens — tokens de renovação JWT (compartilhado entre apps)

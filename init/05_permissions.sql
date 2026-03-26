@@ -35,6 +35,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_code_user;
 GRANT UPDATE (password_hash, must_change_password) ON samba_school.users TO samba_code_user;
 GRANT INSERT, SELECT, DELETE ON samba_school.refresh_tokens TO samba_code_user;
 GRANT USAGE ON samba_school.refresh_tokens_id_seq TO samba_code_user;
+GRANT SELECT, INSERT, DELETE ON samba_school.user_project_access TO samba_code_user;
 
 -- samba_code: acesso total
 GRANT ALL PRIVILEGES ON ALL TABLES    IN SCHEMA samba_code TO samba_code_user;
@@ -62,6 +63,7 @@ GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_edvance_user;
 GRANT UPDATE (password_hash, must_change_password) ON samba_school.users TO samba_edvance_user;
 GRANT INSERT, SELECT, DELETE ON samba_school.refresh_tokens TO samba_edvance_user;
 GRANT USAGE ON samba_school.refresh_tokens_id_seq TO samba_edvance_user;
+GRANT SELECT, INSERT, DELETE ON samba_school.user_project_access TO samba_edvance_user;
 
 -- samba_edvance: acesso total
 GRANT ALL PRIVILEGES ON ALL TABLES    IN SCHEMA samba_edvance TO samba_edvance_user;
