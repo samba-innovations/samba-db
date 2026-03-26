@@ -43,6 +43,8 @@ CREATE TABLE samba_school.users (
     is_active            BOOLEAN      NOT NULL DEFAULT TRUE,
     must_change_password BOOLEAN      NOT NULL DEFAULT FALSE,
     is_admin             BOOLEAN      NOT NULL DEFAULT FALSE,
+    avatar_url           VARCHAR(500),
+    bio                  TEXT,
     created_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
