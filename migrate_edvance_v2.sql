@@ -117,3 +117,66 @@ CREATE TABLE IF NOT EXISTS samba_edvance.question_options (
     UNIQUE (question_id, label)
 );
 CREATE INDEX IF NOT EXISTS ix_qo_question ON samba_edvance.question_options (question_id);
+
+-- =============================================================================
+-- Correções de schema para tabelas que existiam antes sem colunas/constraints
+-- =============================================================================
+
+-- exam_class_assignments: garante id SERIAL PK
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema = 'samba_edvance'
+      AND table_name   = 'exam_class_assignments'
+      AND column_name  = 'id'
+  ) THEN
+    EXECUTE 'ALTER TABLE samba_edvance.exam_class_assignments DROP CONSTRAINT IF EXISTS exam_class_assignments_pkey';
+    EXECUTE 'ALTER TABLE samba_edvance.exam_class_assignments ADD COLUMN id SERIAL';
+    EXECUTE 'ALTER TABLE samba_edvance.exam_class_assignments ADD PRIMARY KEY (id)';
+  END IF;
+END $$;
+
+-- exam_class_assignments: garante UNIQUE(exam_id, class_id)
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conname = 'uq_eca_exam_class'
+      AND conrelid = 'samba_edvance.exam_class_assignments'::regclass
+  ) THEN
+    EXECUTE 'ALTER TABLE samba_edvance.exam_class_assignments ADD CONSTRAINT uq_eca_exam_class UNIQUE (exam_id, class_id)';
+  END IF;
+END $$;
+
+-- exam_discipline_quotas: garante id SERIAL PK
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+    WHERE table_schema = 'samba_edvance'
+      AND table_name   = 'exam_discipline_quotas'
+      AND column_name  = 'id'
+  ) THEN
+    EXECUTE 'ALTER TABLE samba_edvance.exam_discipline_quotas DROP CONSTRAINT IF EXISTS exam_discipline_quotas_pkey';
+    EXECUTE 'ALTER TABLE samba_edvance.exam_discipline_quotas ADD COLUMN id SERIAL';
+    EXECUTE 'ALTER TABLE samba_edvance.exam_discipline_quotas ADD PRIMARY KEY (id)';
+  END IF;
+END $$;
+
+-- exam_discipline_quotas: garante UNIQUE(exam_id, discipline_id)
+DO $$ BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conname = 'uq_edq_exam_discipline'
+      AND conrelid = 'samba_edvance.exam_discipline_quotas'::regclass
+  ) THEN
+    EXECUTE 'ALTER TABLE samba_edvance.exam_discipline_quotas ADD CONSTRAINT uq_edq_exam_discipline UNIQUE (exam_id, discipline_id)';
+  END IF;
+END $$;
+
+-- exam_teacher_progress: garante updated_at
+ALTER TABLE samba_edvance.exam_teacher_progress
+  ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+
+-- exam_progress_log: garante quota_before e quota_after
+ALTER TABLE samba_edvance.exam_progress_log
+  ADD COLUMN IF NOT EXISTS quota_before INTEGER,
+  ADD COLUMN IF NOT EXISTS quota_after  INTEGER;

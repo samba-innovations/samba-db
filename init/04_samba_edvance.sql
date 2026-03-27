@@ -163,6 +163,8 @@ CREATE TABLE samba_edvance.exam_progress_log (
     question_id    INTEGER,
     event_type     VARCHAR(50) NOT NULL,
     submitted_snap INTEGER,
+    quota_before   INTEGER,
+    quota_after    INTEGER,
     created_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
