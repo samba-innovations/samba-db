@@ -150,8 +150,10 @@ CREATE TABLE samba_school.class_disciplines (
 CREATE TABLE samba_school.students (
     id             SERIAL       PRIMARY KEY,
     ra             VARCHAR(32)  UNIQUE NOT NULL,
+    dig_ra         VARCHAR(8),
     name           VARCHAR(160) NOT NULL,
     class_id       INTEGER      REFERENCES samba_school.school_classes(id),
+    call_number    INTEGER,
     birth_date     DATE,
     guardian_name  VARCHAR(160),
     guardian_phone VARCHAR(20),
