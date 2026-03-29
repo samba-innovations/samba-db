@@ -9,10 +9,7 @@
 --
 -- Idempotente: seguro para re-executar. Usa ON CONFLICT DO NOTHING.
 --
--- Senhas:
---   root@escolacabral.com.br   → Acesso@123  (must_change = FALSE)
---   Coordenadores        → Acesso@123       (must_change = TRUE)
---   Professores          → Acesso@123        (must_change = TRUE)
+-- Senhas: armazenadas como hashes bcrypt (cost=12). Plaintexts não constam neste arquivo.
 -- =============================================================================
 
 -- ---------------------------------------------------------------------------
@@ -218,52 +215,52 @@ $$;
 
 INSERT INTO samba_school.users (name, email, password_hash, is_active, must_change_password) VALUES
     -- ROOT
-    ('ROOT',                                    'root@escolacabral.com.br',              crypt('Root@Cabral2025', gen_salt('bf',12)), TRUE, FALSE),
+    ('ROOT',                                    'root@escolacabral.com.br',              '$2b$12$xJzODz7qsG.mKbbmohP.0u2SGYpg2XVhoy7jQkBgBUot9/24QccTC', TRUE, FALSE),
     -- Diretor / Vice-Diretor
-    ('DIRETOR',                                 'diretor@escolacabral.com.br',           crypt('Acesso@123', gen_salt('bf',12)),   TRUE, FALSE),
-    ('VICE-DIRETOR',                            'vice@escolacabral.com.br',              crypt('Acesso@123',    gen_salt('bf',12)),   TRUE, FALSE),
+    ('DIRETOR',                                 'diretor@escolacabral.com.br',           '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('VICE-DIRETOR',                            'vice@escolacabral.com.br',              '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
     -- Coordenadores
-    ('ALINE CRISTIANE ZORZI',                   'aline_zorzi@escolacabral.com.br',       crypt('Acesso@123', gen_salt('bf',12)),     TRUE, TRUE),
-    ('CARLA REGINA SPARAPAM DA SILVA',          'carla_silva@escolacabral.com.br',       crypt('Acesso@123', gen_salt('bf',12)),     TRUE, TRUE),
-    ('FABIO ANGELO AGUIAR',                     'fabio_aguiar@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),     TRUE, TRUE),
-    ('GILCELENE JANAINA RODRIGUES CARDOSO',     'gilcelene_cardoso@escolacabral.com.br', crypt('Acesso@123', gen_salt('bf',12)),     TRUE, TRUE),
-    ('RAUL DE SOUZA HOFFMANN',                  'raul_hoffmann@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),     TRUE, TRUE),
+    ('ALINE CRISTIANE ZORZI',                   'aline_zorzi@escolacabral.com.br',       '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('CARLA REGINA SPARAPAM DA SILVA',          'carla_silva@escolacabral.com.br',       '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('FABIO ANGELO AGUIAR',                     'fabio_aguiar@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('GILCELENE JANAINA RODRIGUES CARDOSO',     'gilcelene_cardoso@escolacabral.com.br', '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('RAUL DE SOUZA HOFFMANN',                  'raul_hoffmann@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
     -- Professores
-    ('ADAIANE RODRIGUES MARTINS',               'adaiane_martins@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('ANA CAROLINA DE FREITAS NUNES HARTEN',    'ana_harten@escolacabral.com.br',        crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('ANA LÚCIA MARIANO DOS SANTOS',            'ana_santos@escolacabral.com.br',        crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('ANGÉLICA LONGO DE CAMPOS',                'angelica_campos@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('CAMILA CHIQUITO PALHARES',                'camila_palhares@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('CÉSAR AUGUSTO GABURI',                    'cesar_gaburi@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('CINTHIA SANCHES BOTELHO TOJEIRO',         'cinthia_tojeiro@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('EVANDRO HENRIQUE DA SILVA FERREIRA',      'evandro_ferreira@escolacabral.com.br',  crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('FERNANDO PEREIRA GODOI',                  'fernando_godoi@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('GABRIEL GUIMARÃES FERREIRA RAMOS',        'gabriel_ramos@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('JEAN MARTINS',                            'jean_martins@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LAHYR MORATO KRAHENBUHL NETO',            'lahyr_neto@escolacabral.com.br',        crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LEANDRO JOSÉ GUARNETTI',                  'leandro_guarnetti@escolacabral.com.br', crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LETÍCIA ZAFRED PAIVA',                    'leticia_paiva@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LILIAN CRISTIANE PISANO',                 'lilian_pisano@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LUCIANE DUARTE PEROTTA',                  'luciane_perotta@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('LUÍS GUSTAVO DE SOUZA ZECA',              'luis_zeca@escolacabral.com.br',         crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MÁRCIA AP. CORRÊA RODRIGUES',             'marcia_rodrigues@escolacabral.com.br',  crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MARIA BENEDITA MOREIRA',                  'maria_moreira@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MARIA FERNANDA BRIGUETI LOURENÇO',        'maria_lourenco@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MARISA ALVES DA SILVA',                   'marisa_silva@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MATHEUS LUIS DE CAMPOS MIELI',            'matheus_mieli@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('MICHAEL JORDÃO MILIANO DOS SANTOS',       'michael_santos@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('PÂMELA CAROLINE EVARISTO',                'pamela_evaristo@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('PATRÍCIA STEVANATO DE OLIVEIRA',          'patricia_oliveira@escolacabral.com.br', crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('REGINA GENESINI IAYAR',                   'regina_iayar@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('ROSANGELA TEREZINHA TICIANELLI PIRES',    'rosangela_pires@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('SANDRA APARECIDA BARONI FONSECA',         'sandra_fonseca@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('SÉRGIA MARIA MOREIRA MACHADO',            'sergia_machado@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('TERESA CRISTINA',                         'teresa_cristina@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('THIAGO STEFANIN',                         'thiago_stefanin@escolacabral.com.br',   crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('VALÉRIA R. C. BOSCO',                     'valeria_bosco@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('VÂNIA MARIA THEODORO PINHEIRO',           'vania_pinheiro@escolacabral.com.br',    crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('VINÍCIUS BERTUZZO LIMA',                  'vinicius_lima@escolacabral.com.br',     crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE),
-    ('VITOR BONJORNO CHAGAS',                   'vitor_chagas@escolacabral.com.br',      crypt('Acesso@123', gen_salt('bf',12)),      TRUE, TRUE)
+    ('ADAIANE RODRIGUES MARTINS',               'adaiane_martins@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('ANA CAROLINA DE FREITAS NUNES HARTEN',    'ana_harten@escolacabral.com.br',        '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('ANA LÚCIA MARIANO DOS SANTOS',            'ana_santos@escolacabral.com.br',        '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('ANGÉLICA LONGO DE CAMPOS',                'angelica_campos@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('CAMILA CHIQUITO PALHARES',                'camila_palhares@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('CÉSAR AUGUSTO GABURI',                    'cesar_gaburi@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('CINTHIA SANCHES BOTELHO TOJEIRO',         'cinthia_tojeiro@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('EVANDRO HENRIQUE DA SILVA FERREIRA',      'evandro_ferreira@escolacabral.com.br',  '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('FERNANDO PEREIRA GODOI',                  'fernando_godoi@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('GABRIEL GUIMARÃES FERREIRA RAMOS',        'gabriel_ramos@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('JEAN MARTINS',                            'jean_martins@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LAHYR MORATO KRAHENBUHL NETO',            'lahyr_neto@escolacabral.com.br',        '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LEANDRO JOSÉ GUARNETTI',                  'leandro_guarnetti@escolacabral.com.br', '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LETÍCIA ZAFRED PAIVA',                    'leticia_paiva@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LILIAN CRISTIANE PISANO',                 'lilian_pisano@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LUCIANE DUARTE PEROTTA',                  'luciane_perotta@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('LUÍS GUSTAVO DE SOUZA ZECA',              'luis_zeca@escolacabral.com.br',         '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MÁRCIA AP. CORRÊA RODRIGUES',             'marcia_rodrigues@escolacabral.com.br',  '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MARIA BENEDITA MOREIRA',                  'maria_moreira@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MARIA FERNANDA BRIGUETI LOURENÇO',        'maria_lourenco@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MARISA ALVES DA SILVA',                   'marisa_silva@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MATHEUS LUIS DE CAMPOS MIELI',            'matheus_mieli@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('MICHAEL JORDÃO MILIANO DOS SANTOS',       'michael_santos@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('PÂMELA CAROLINE EVARISTO',                'pamela_evaristo@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('PATRÍCIA STEVANATO DE OLIVEIRA',          'patricia_oliveira@escolacabral.com.br', '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('REGINA GENESINI IAYAR',                   'regina_iayar@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('ROSANGELA TEREZINHA TICIANELLI PIRES',    'rosangela_pires@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('SANDRA APARECIDA BARONI FONSECA',         'sandra_fonseca@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('SÉRGIA MARIA MOREIRA MACHADO',            'sergia_machado@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('TERESA CRISTINA',                         'teresa_cristina@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('THIAGO STEFANIN',                         'thiago_stefanin@escolacabral.com.br',   '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('VALÉRIA R. C. BOSCO',                     'valeria_bosco@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('VÂNIA MARIA THEODORO PINHEIRO',           'vania_pinheiro@escolacabral.com.br',    '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('VINÍCIUS BERTUZZO LIMA',                  'vinicius_lima@escolacabral.com.br',     '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
+    ('VITOR BONJORNO CHAGAS',                   'vitor_chagas@escolacabral.com.br',      '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE)
 ON CONFLICT (email) DO NOTHING;
 
 -- ---------------------------------------------------------------------------
@@ -504,13 +501,13 @@ $$;
 
 INSERT INTO samba_school.users (name, email, password_hash, is_active, must_change_password, is_admin)
 VALUES
-    ('M. Afonso',   'm.afonso@escolacabral.com.br',  crypt('Admin@2025', gen_salt('bf')), true, true, true),
-    ('V. Bertuzzo', 'v.bertuzzo@escolacabral.com.br', crypt('Admin@2025', gen_salt('bf')), true, true, true)
+    ('M. Afonso',   'm.afonso@escolacabral.com.br',  '$2b$12$lxblnsLMJQW2yM.ZqVop.ON0Zki.TX1nTAugihXwFWwwbV8QqcMN.', true, true, true),
+    ('V. Bertuzzo', 'v.bertuzzo@escolacabral.com.br', '$2b$12$lxblnsLMJQW2yM.ZqVop.ON0Zki.TX1nTAugihXwFWwwbV8QqcMN.', true, true, true)
 ON CONFLICT (email) DO UPDATE SET
     is_admin             = true,
     must_change_password = true,
     is_active            = true,
-    password_hash        = crypt('Admin@2025', gen_salt('bf'));
+    password_hash        = '$2b$12$lxblnsLMJQW2yM.ZqVop.ON0Zki.TX1nTAugihXwFWwwbV8QqcMN.';
 
 INSERT INTO samba_school.user_roles (user_id, role_id)
 SELECT u.id, r.id
