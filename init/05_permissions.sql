@@ -37,6 +37,10 @@ GRANT INSERT, SELECT, DELETE ON samba_school.refresh_tokens TO samba_code_user;
 GRANT USAGE ON samba_school.refresh_tokens_id_seq TO samba_code_user;
 GRANT SELECT, INSERT, DELETE ON samba_school.user_project_access TO samba_code_user;
 
+-- samba_school.students: samba-code importa alunos via CSV (upsert)
+GRANT INSERT, UPDATE, DELETE ON samba_school.students TO samba_code_user;
+GRANT USAGE ON samba_school.students_id_seq TO samba_code_user;
+
 -- samba_code: acesso total
 GRANT ALL PRIVILEGES ON ALL TABLES    IN SCHEMA samba_code TO samba_code_user;
 GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA samba_code TO samba_code_user;
