@@ -279,3 +279,27 @@ CREATE TABLE samba_edvance.question_skills (
 
 CREATE INDEX ix_question_skills_question ON samba_edvance.question_skills (question_id);
 CREATE INDEX ix_question_skills_skill    ON samba_edvance.question_skills (skill_id);
+
+-- ---------------------------------------------------------------------------
+-- Índices adicionais para colunas de FK sem índice (performance em joins)
+-- ---------------------------------------------------------------------------
+
+CREATE INDEX ix_exams_class_id       ON samba_edvance.exams (class_id);
+CREATE INDEX ix_exams_blueprint_id   ON samba_edvance.exams (blueprint_id);
+CREATE INDEX ix_exams_created_by     ON samba_edvance.exams (created_by);
+
+CREATE INDEX ix_eta_class_id         ON samba_edvance.exam_teacher_assignments (class_id);
+CREATE INDEX ix_eta_discipline_id    ON samba_edvance.exam_teacher_assignments (discipline_id);
+
+CREATE INDEX ix_etp_discipline_id    ON samba_edvance.exam_teacher_progress (discipline_id);
+CREATE INDEX ix_etp_class_id         ON samba_edvance.exam_teacher_progress (class_id);
+
+CREATE INDEX ix_epl_teacher_id       ON samba_edvance.exam_progress_log (teacher_id);
+CREATE INDEX ix_epl_discipline_id    ON samba_edvance.exam_progress_log (discipline_id);
+CREATE INDEX ix_epl_class_id         ON samba_edvance.exam_progress_log (class_id);
+
+CREATE INDEX ix_questions_class_id   ON samba_edvance.questions (class_id);
+CREATE INDEX ix_questions_state      ON samba_edvance.questions (state);
+
+CREATE INDEX ix_items_owner_id       ON samba_edvance.items (owner_id);
+CREATE INDEX ix_items_skill_id       ON samba_edvance.items (skill_id);
