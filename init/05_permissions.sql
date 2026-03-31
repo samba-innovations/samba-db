@@ -2,9 +2,11 @@
 -- 05_permissions.sql — Usuários do banco e permissões por schema
 -- =============================================================================
 -- Princípio do menor privilégio:
+--   samba_school_user  → lê e escreve em samba_school (samba-access, SSO tokens)
 --   samba_code_user    → lê samba_school, escreve em samba_code
 --   samba_edvance_user → lê samba_school, escreve em samba_edvance
---   postgres           → acesso total (admin, samba-access)
+--   samba_paper_user   → lê samba_school, escreve em samba_paper
+--   postgres           → acesso total (admin)
 -- =============================================================================
 
 -- ---------------------------------------------------------------------------
@@ -13,11 +15,17 @@
 
 DO $$
 BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_school_user') THEN
+        CREATE USER samba_school_user WITH PASSWORD 'school2025secure';
+    END IF;
     IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_code_user') THEN
         CREATE USER samba_code_user WITH PASSWORD 'code2025';
     END IF;
     IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_edvance_user') THEN
         CREATE USER samba_edvance_user WITH PASSWORD 'edvance2025';
+    END IF;
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_paper_user') THEN
+        CREATE USER samba_paper_user WITH PASSWORD 'paper2025';
     END IF;
 END
 $$;
@@ -81,3 +89,39 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA samba_edvance
     GRANT ALL ON TABLES    TO samba_edvance_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA samba_edvance
     GRANT ALL ON SEQUENCES TO samba_edvance_user;
+
+-- ---------------------------------------------------------------------------
+-- samba_school_user (samba-access: lê e escreve em samba_school)
+-- ---------------------------------------------------------------------------
+
+GRANT USAGE ON SCHEMA samba_school TO samba_school_user;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA samba_school TO samba_school_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA samba_school TO samba_school_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
+    GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO samba_school_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
+    GRANT USAGE, SELECT ON SEQUENCES TO samba_school_user;
+
+-- ---------------------------------------------------------------------------
+-- samba_paper_user (samba-paper: lê samba_school, escreve em samba_paper)
+-- ---------------------------------------------------------------------------
+
+GRANT USAGE ON SCHEMA samba_school TO samba_paper_user;
+GRANT USAGE ON SCHEMA samba_paper  TO samba_paper_user;
+
+-- samba_school: somente leitura
+GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_paper_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
+    GRANT SELECT ON TABLES TO samba_paper_user;
+
+-- samba_paper: acesso total
+GRANT ALL PRIVILEGES ON ALL TABLES    IN SCHEMA samba_paper TO samba_paper_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA samba_paper TO samba_paper_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_paper
+    GRANT ALL ON TABLES    TO samba_paper_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_paper
+    GRANT ALL ON SEQUENCES TO samba_paper_user;
