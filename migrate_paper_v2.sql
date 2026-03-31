@@ -90,22 +90,12 @@ INSERT INTO samba_paper.bimestres (ano, numero, label, data_inicio, data_fim) VA
 ON CONFLICT DO NOTHING;
 
 -- ---------------------------------------------------------------------------
--- 4. Vínculo professor → disciplina → turma (em samba_paper para evitar
---    problema de permissão, já que samba_paper_user tem write aqui)
+-- 4. Permissão de leitura em samba_school.teacher_assignments para samba_paper_user
+--    (o vínculo professor→disciplina→turma já existe em samba_school)
 -- ---------------------------------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS samba_paper.professor_disciplinas (
-  id              SERIAL PRIMARY KEY,
-  user_id         INTEGER     NOT NULL,  -- samba_school.users.id
-  discipline_id   INTEGER     NOT NULL,  -- samba_school.disciplines.id
-  school_class_id INTEGER,               -- samba_school.school_classes.id (NULL = todas as turmas)
-  UNIQUE (user_id, discipline_id, school_class_id)
-);
-
-CREATE INDEX IF NOT EXISTS ix_prof_disc_user ON samba_paper.professor_disciplinas (user_id);
-
-GRANT SELECT, INSERT, UPDATE, DELETE ON samba_paper.professor_disciplinas TO samba_paper_user;
-GRANT USAGE ON samba_paper.professor_disciplinas_id_seq TO samba_paper_user;
+GRANT SELECT ON samba_school.teacher_assignments TO samba_paper_user;
+GRANT SELECT ON samba_school.class_disciplines   TO samba_paper_user;
 
 -- Permissões de leitura nas sequences das novas tabelas
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA samba_paper TO samba_paper_user;
