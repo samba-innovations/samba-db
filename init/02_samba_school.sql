@@ -96,8 +96,9 @@ CREATE INDEX ix_refresh_tokens_expires_at ON samba_school.refresh_tokens (expire
 -- ---------------------------------------------------------------------------
 
 CREATE TABLE samba_school.disciplines (
-    id   SERIAL       PRIMARY KEY,
-    name VARCHAR(150) UNIQUE NOT NULL
+    id               SERIAL       PRIMARY KEY,
+    name             VARCHAR(150) UNIQUE NOT NULL,
+    discipline_type  VARCHAR(30)  NOT NULL DEFAULT 'base_comum'
 );
 
 -- ---------------------------------------------------------------------------
