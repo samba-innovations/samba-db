@@ -29,48 +29,48 @@ ON CONFLICT (name) DO NOTHING;
 -- Disciplinas — todas as matrizes PEI 2026
 -- ---------------------------------------------------------------------------
 
-INSERT INTO samba_school.disciplines (name) VALUES
+INSERT INTO samba_school.disciplines (name, aulas_disciplina_nome) VALUES
     -- Core (todas as matrizes)
-    ('Língua Portuguesa'),
-    ('Redação e Leitura'),
-    ('Língua Inglesa'),
-    ('Arte'),
-    ('Educação Física'),
-    ('Matemática'),
-    ('Educação Financeira'),
-    ('Biologia'),
-    ('Física'),
-    ('Química'),
-    ('Filosofia'),
-    ('Geografia'),
-    ('História'),
-    ('Projeto de Vida'),
-    ('Práticas Experimentais'),
-    ('OE Matemática'),
-    ('OE Língua Portuguesa'),
-    ('Eletiva'),
-    ('Robótica'),
-    ('EMA'),
+    ('Língua Portuguesa',           NULL),
+    ('Redação e Leitura',           'Redação e Leitura'),
+    ('Língua Inglesa',              'Língua Inglesa'),
+    ('Arte',                        NULL),
+    ('Educação Física',             NULL),
+    ('Matemática',                  NULL),
+    ('Educação Financeira',         'Educação Financeira'),
+    ('Biologia',                    NULL),
+    ('Física',                      NULL),
+    ('Química',                     NULL),
+    ('Filosofia',                   NULL),
+    ('Geografia',                   NULL),
+    ('História',                    NULL),
+    ('Projeto de Vida',             'Projeto de Vida'),
+    ('Práticas Experimentais',      'Práticas Experimentais'),
+    ('OE Matemática',               NULL),
+    ('OE Língua Portuguesa',        NULL),
+    ('Eletiva',                     NULL),
+    ('Robótica',                    'Robótica - PEI 9h'),
+    ('EMA',                         NULL),
     -- 2ª série
-    ('Sociologia'),
-    ('Programação'),
-    ('Empreendedorismo'),
-    ('Arte e Mídias Digitais'),
-    ('Liderança-Oratória'),
+    ('Sociologia',                  NULL),
+    ('Programação',                 'Programação'),
+    ('Empreendedorismo',            'Empreendedorismo'),
+    ('Arte e Mídias Digitais',      'Arte e Mídias Digitais'),
+    ('Liderança-Oratória',          'Liderança e Oratória'),
     -- 3ª série A/B
-    ('Aprofundamento em Sociologia'),
-    ('Aprofundamento em Geografia'),
-    ('Aprofundamento em Filosofia'),
-    ('Atualidades'),
-    ('Inglês'),
+    ('Aprofundamento em Sociologia','Aprof. Sociologia'),
+    ('Aprofundamento em Geografia', 'Aprof. Geografia'),
+    ('Aprofundamento em Filosofia', 'Aprof. Filosofia'),
+    ('Atualidades',                 'Atualidades'),
+    ('Inglês',                      NULL),
     -- 3ª série C/D
-    ('Aprofundamento em Química'),
-    ('Aprofundamento em Biologia'),
+    ('Aprofundamento em Química',   'Aprof. Química'),
+    ('Aprofundamento em Biologia',  'Aprof. Biologia'),
     -- Anos Finais
-    ('Ensino Religioso'),
-    ('Ciências'),
-    ('Tecnologia e Inovação')
-ON CONFLICT (name) DO NOTHING;
+    ('Ensino Religioso',            NULL),
+    ('Ciências',                    NULL),
+    ('Tecnologia e Inovação',       'Tecnologia e Inovação')
+ON CONFLICT (name) DO UPDATE SET aulas_disciplina_nome = EXCLUDED.aulas_disciplina_nome;
 
 -- ---------------------------------------------------------------------------
 -- Séries escolares
