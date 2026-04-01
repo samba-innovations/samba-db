@@ -133,13 +133,18 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
 
 -- ---------------------------------------------------------------------------
 -- samba_paper_user (samba-paper: lê samba_school, escreve em samba_paper)
+-- Lê também samba_edvance.skills para exibir descrições das habilidades BNCC
 -- ---------------------------------------------------------------------------
 
-GRANT USAGE ON SCHEMA samba_school TO samba_paper_user;
-GRANT USAGE ON SCHEMA samba_paper  TO samba_paper_user;
+GRANT USAGE ON SCHEMA samba_school  TO samba_paper_user;
+GRANT USAGE ON SCHEMA samba_paper   TO samba_paper_user;
+GRANT USAGE ON SCHEMA samba_edvance TO samba_paper_user;
 
 -- samba_school: somente leitura
 GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_paper_user;
+
+-- samba_edvance: somente leitura de skills (habilidades BNCC)
+GRANT SELECT ON samba_edvance.skills TO samba_paper_user;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
     GRANT SELECT ON TABLES TO samba_paper_user;
