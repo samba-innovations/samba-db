@@ -41,7 +41,14 @@ GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_school_user;
 
 -- Escrita nas tabelas necessárias para auth
 GRANT INSERT, UPDATE, DELETE ON samba_school.refresh_tokens   TO samba_school_user;
-GRANT INSERT, UPDATE, DELETE ON samba_school.sso_tokens       TO samba_school_user;
+DO $$
+BEGIN
+  IF EXISTS (SELECT FROM information_schema.tables
+             WHERE table_schema = 'samba_school' AND table_name = 'sso_tokens') THEN
+    EXECUTE 'GRANT INSERT, UPDATE, DELETE ON samba_school.sso_tokens TO samba_school_user';
+  END IF;
+END
+$$;
 GRANT INSERT, UPDATE, DELETE ON samba_school.user_project_access TO samba_school_user;
 GRANT UPDATE (password_hash, must_change_password) ON samba_school.users TO samba_school_user;
 

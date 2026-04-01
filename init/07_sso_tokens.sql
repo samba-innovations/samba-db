@@ -23,3 +23,4 @@ CREATE INDEX ix_sso_tokens_user ON samba_school.sso_tokens (user_id);
 
 -- Permissão para todos os app users
 GRANT SELECT, INSERT, UPDATE ON samba_school.sso_tokens TO samba_code_user, samba_edvance_user;
+GRANT INSERT, UPDATE, DELETE ON samba_school.sso_tokens TO samba_school_user;
