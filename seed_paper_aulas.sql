@@ -1,6 +1,6 @@
 -- =============================================================================
 -- seed_paper_aulas.sql — Currículo escopo-sequência 2026 → samba_paper.aulas
--- Gerado automaticamente por parse_curriculum.js em 2026-03-31
+-- Gerado automaticamente por parse_curriculum.js em 2026-04-01
 -- Total: 1184 aulas
 -- =============================================================================
 
