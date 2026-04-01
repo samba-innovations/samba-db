@@ -213,9 +213,9 @@ $$;
 -- Usuários — 41 usuários de produção
 -- ---------------------------------------------------------------------------
 
-INSERT INTO samba_school.users (name, email, password_hash, is_active, must_change_password) VALUES
+INSERT INTO samba_school.users (name, email, password_hash, is_active, must_change_password, is_admin) VALUES
     -- ROOT
-    ('ROOT',                                    'root@escolacabral.com.br',              '$2b$12$xJzODz7qsG.mKbbmohP.0u2SGYpg2XVhoy7jQkBgBUot9/24QccTC', TRUE, FALSE),
+    ('ROOT',                                    'root@escolacabral.com.br',              '$2b$12$xJzODz7qsG.mKbbmohP.0u2SGYpg2XVhoy7jQkBgBUot9/24QccTC', TRUE, FALSE, TRUE),
     -- Diretor / Vice-Diretor
     ('DIRETOR',                                 'diretor@escolacabral.com.br',           '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
     ('VICE-DIRETOR',                            'vice@escolacabral.com.br',              '$2b$12$jYatesDTrsrYUElp8jqqfumZ4S1fWNZG2kMH2ZRVEadduJuS.eYDW',   TRUE, TRUE),
