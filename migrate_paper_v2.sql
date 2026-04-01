@@ -12,7 +12,7 @@ CREATE SCHEMA IF NOT EXISTS samba_paper;
 -- ---------------------------------------------------------------------------
 
 DO $$ BEGIN
-    CREATE TYPE samba_paper.document_type AS ENUM (
+    CREATE TYPE samba_paper."DocumentType" AS ENUM (
         'plano_de_aula',
         'guia_de_aprendizagem',
         'pei',
@@ -25,7 +25,7 @@ EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
 DO $$ BEGIN
-    CREATE TYPE samba_paper.document_status AS ENUM ('draft', 'final');
+    CREATE TYPE samba_paper."DocumentStatus" AS ENUM ('draft', 'final');
 EXCEPTION WHEN duplicate_object THEN NULL;
 END $$;
 
@@ -36,11 +36,11 @@ END $$;
 CREATE TABLE IF NOT EXISTS samba_paper.documents (
     id         SERIAL                      PRIMARY KEY,
     user_id    INTEGER                     NOT NULL REFERENCES samba_school.users(id) ON DELETE CASCADE,
-    type       samba_paper.document_type   NOT NULL,
+    type       samba_paper."DocumentType"   NOT NULL,
     title      VARCHAR(300)                NOT NULL,
     content    JSONB                       NOT NULL DEFAULT '{}',
     pdf_path   VARCHAR(500),
-    status     samba_paper.document_status NOT NULL DEFAULT 'draft',
+    status     samba_paper."DocumentStatus" NOT NULL DEFAULT 'draft',
     created_at TIMESTAMPTZ                 NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ                 NOT NULL DEFAULT NOW()
 );
