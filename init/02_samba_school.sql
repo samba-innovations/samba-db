@@ -48,7 +48,8 @@ CREATE TABLE samba_school.users (
     created_at           TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX ix_users_email ON samba_school.users (email);
+CREATE INDEX ix_users_email     ON samba_school.users (email);
+CREATE INDEX ix_users_is_active ON samba_school.users (is_active);
 
 -- ---------------------------------------------------------------------------
 -- user_roles — N:N usuário ↔ perfil
@@ -87,7 +88,8 @@ CREATE TABLE samba_school.refresh_tokens (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX ix_refresh_tokens_user ON samba_school.refresh_tokens (user_id);
+CREATE INDEX ix_refresh_tokens_user       ON samba_school.refresh_tokens (user_id);
+CREATE INDEX ix_refresh_tokens_expires_at ON samba_school.refresh_tokens (expires_at);
 
 -- ---------------------------------------------------------------------------
 -- disciplines — disciplinas curriculares (BNCC)
@@ -161,8 +163,9 @@ CREATE TABLE samba_school.students (
     created_at     TIMESTAMPTZ  NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX ix_students_ra       ON samba_school.students (ra);
-CREATE INDEX ix_students_class_id ON samba_school.students (class_id);
+CREATE INDEX ix_students_ra        ON samba_school.students (ra);
+CREATE INDEX ix_students_class_id  ON samba_school.students (class_id);
+CREATE INDEX ix_students_is_active ON samba_school.students (is_active);
 
 -- ---------------------------------------------------------------------------
 -- teacher_assignments — professor leciona disciplina em turma
