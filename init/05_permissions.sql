@@ -13,6 +13,9 @@
 
 DO $$
 BEGIN
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_school_user') THEN
+        CREATE USER samba_school_user WITH PASSWORD 'school2025secure';
+    END IF;
     IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_code_user') THEN
         CREATE USER samba_code_user WITH PASSWORD 'code2025';
     END IF;
@@ -21,6 +24,26 @@ BEGIN
     END IF;
 END
 $$;
+
+-- ---------------------------------------------------------------------------
+-- samba_school_user (samba-access — autenticação central)
+-- ---------------------------------------------------------------------------
+
+GRANT USAGE ON SCHEMA samba_school TO samba_school_user;
+
+-- Leitura de todas as tabelas do schema
+GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_school_user;
+
+-- Escrita nas tabelas necessárias para auth
+GRANT INSERT, UPDATE, DELETE ON samba_school.refresh_tokens   TO samba_school_user;
+GRANT INSERT, UPDATE, DELETE ON samba_school.sso_tokens       TO samba_school_user;
+GRANT INSERT, UPDATE, DELETE ON samba_school.user_project_access TO samba_school_user;
+GRANT UPDATE (password_hash, must_change_password) ON samba_school.users TO samba_school_user;
+
+GRANT USAGE ON samba_school.refresh_tokens_id_seq TO samba_school_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
+    GRANT SELECT ON TABLES TO samba_school_user;
 
 -- ---------------------------------------------------------------------------
 -- samba_code_user
