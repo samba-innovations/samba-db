@@ -694,14 +694,14 @@ primeira lei de Mendel.', NULL),
   ('fundamental', '9', 2, 2, 'Práticas Experimentais', NULL, NULL, NULL, NULL, 'Divisão celular', 'Divisão celular: mitose', 'Divisão celular.', 'Representar por modelo físico as diferentes etapas da mitose.', NULL),
   ('fundamental', '9', 2, 3, 'Práticas Experimentais', NULL, NULL, NULL, NULL, 'Taxonomia', 'Interpretação de cladogramas', 'Cladograma.', 'Representar a classificação de seres vivos com a construção de
 cladogramas.', NULL),
-  ('fundamental', '6', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '7', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '8', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '9', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '6', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '7', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '8', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-  ('fundamental', '9', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+  ('fundamental', '6', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '7', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '8', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '9', 1, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '6', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '7', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '8', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
+  ('fundamental', '9', 2, 1, 'Projeto de Vida', NULL, NULL, NULL, NULL, NULL, 'Projeto de Vida — Aula 1', NULL, NULL, NULL),
   ('fundamental', '6', 1, 1, 'Redação e Leitura', 'Histórias que a
 Escola Conta', NULL, '- EF69LP46
 
@@ -10004,7 +10004,7 @@ os cenários
 Compartilhar o projeto finalizado', NULL),
   ('fundamental', '6', 2, 23, 'Tecnologia e Inovação', NULL, NULL, '(EF06CO02)
 Elaborar algoritmos que envolvam instruções sequenciais, de repetição e de
-seleção usando uma linguagem de programação.', '(EF69AR06)', NULL, NULL, 'n/a', 'Efeitos
+seleção usando uma linguagem de programação.', '(EF69AR06)', NULL, 'Tecnologia e Inovação — Aula 23', 'n/a', 'Efeitos
 visuais em personagens (cor e turbilhão).
 
 Lógica de repetição com aumento e
@@ -10033,7 +10033,7 @@ a criação de um item fictício para o concurso.', NULL),
 Identificar os recursos ou insumos necessários (entradas) para a resolução de
 problemas, bem como os resultados esperados (saídas), determinando os
 respectivos tipos de dados, e estabelecendo a definição de problema como uma
-relação entre entrada e saída.', 'n/a', NULL, NULL, 'n/a', 'Blocos
+relação entre entrada e saída.', 'n/a', NULL, 'Tecnologia e Inovação — Aula 29', 'n/a', 'Blocos
 de Eventos (bandeira verde)
 
 Blocos de Aparência (Mudar fantasia
@@ -10061,7 +10061,7 @@ Compreender o tipo de dado booleano
 Identificar os recursos ou insumos necessários (entradas) para a resolução de
 problemas, bem como os resultados esperados (saídas), determinando os
 respectivos tipos de dados, e estabelecendo a definição de problema como uma
-relação entre entrada e saída.', 'n/a', NULL, NULL, 'n/a', 'Blocos
+relação entre entrada e saída.', 'n/a', NULL, 'Tecnologia e Inovação — Aula 35', 'n/a', 'Blocos
 de Controle ("Se então senão")
 
 Feedback ao usuário
@@ -10180,7 +10180,7 @@ Organizar a estrutura narrativa do
 produto com começo, meio e fim.', NULL),
   ('fundamental', '7', 2, 23, 'Tecnologia e Inovação', NULL, NULL, '(EF07CO11)
 Criar, documentar e publicar, de forma individual ou colaborativa, produtos
-(vídeos, podcasts, web sites) usando recursos de tecnologia.', 'n/a', NULL, NULL, 'n/a', 'Inserção
+(vídeos, podcasts, web sites) usando recursos de tecnologia.', 'n/a', NULL, 'Tecnologia e Inovação — Aula 23', 'n/a', 'Inserção
 e organização de blocos de programação (evento, aparência, controle).
 
 Coordenação de diálogos e transições
@@ -10208,7 +10208,7 @@ Criar e manipular variáveis para
 armazenar dados de entrada.', NULL),
   ('fundamental', '7', 2, 29, 'Tecnologia e Inovação', NULL, NULL, '(EF07C002)
 Analisar programas para detectar e remover erros, ampliando a confiança na
-sua correção.', NULL, NULL, NULL, 'n/a', 'Conceito
+sua correção.', NULL, NULL, 'Tecnologia e Inovação — Aula 29', 'n/a', 'Conceito
 de número primo.
 
 Laços de repetição (loops).
@@ -10233,7 +10233,7 @@ Reinicializar variáveis para
 garantir a correta execução do algoritmo.', NULL),
   ('fundamental', '7', 2, 35, 'Tecnologia e Inovação', NULL, NULL, '(EF07C002)
 Analisar programas para detectar e remover erros, ampliando a confiança na
-sua correção.', NULL, NULL, NULL, 'n/a', 'Modularização
+sua correção.', NULL, NULL, 'Tecnologia e Inovação — Aula 35', 'n/a', 'Modularização
 de código.
 
 Funções/blocos personalizados.
@@ -10342,7 +10342,7 @@ no startlab', NULL),
   ('fundamental', '8', 2, 23, 'Tecnologia e Inovação', NULL, NULL, '(EF08CO04)
 Construir soluções computacionais de problemas de diferentes áreas do
 conhecimento, de forma individual e colaborativa, selecionando as estruturas
-de dados e técnicas adequadas, aperfeiçoando e articulando saberes escolares.', '(EF08MA18)', NULL, NULL, 'n/a', 'Duplicar
+de dados e técnicas adequadas, aperfeiçoando e articulando saberes escolares.', '(EF08MA18)', NULL, 'Tecnologia e Inovação — Aula 23', 'n/a', 'Duplicar
 atores e códigos
 
 Aplicar operadores matemáticos
@@ -10370,7 +10370,7 @@ Diferenciar laços de repetição em
 algoritmos.', NULL),
   ('fundamental', '8', 2, 29, 'Tecnologia e Inovação', NULL, NULL, '(EF08CO01)
 Construir soluções de problemas usando a técnica de recursão e automatizar
-tais soluções usando uma linguagem de programação.', '(EF08MA01)', NULL, NULL, 'n/a', 'Método
+tais soluções usando uma linguagem de programação.', '(EF08MA01)', NULL, 'Tecnologia e Inovação — Aula 29', 'n/a', 'Método
 iterativo.
 
 Método recursivo.
@@ -10395,7 +10395,7 @@ Coordenar a comunicação entre palco
 e ator para ações de desenho.', NULL),
   ('fundamental', '8', 2, 35, 'Tecnologia e Inovação', NULL, NULL, '(EF08CO01)
 Construir soluções de problemas usando a técnica de recursão e automatizar
-tais soluções usando uma linguagem de programação.', '(EF08MA01)', NULL, NULL, 'n/a', 'Recursão
+tais soluções usando uma linguagem de programação.', '(EF08MA01)', NULL, 'Tecnologia e Inovação — Aula 35', 'n/a', 'Recursão
 com múltiplos parâmetros.
 
 Números aleatórios.
@@ -10525,7 +10525,7 @@ aceitar termos de uso sem a devida leitura. "', NULL),
   ('fundamental', '9', 2, 23, 'Tecnologia e Inovação', NULL, NULL, '(EF08CO07)
 Compartilhar informações por meio de redes sociais, compreendendo a sua
 dinâmica de funcionamento, de forma responsável e avaliando sua
-confiabilidade, considerando o respeito e a ética.', NULL, NULL, NULL, 'n/a', 'Reflexão
+confiabilidade, considerando o respeito e a ética.', NULL, NULL, 'Tecnologia e Inovação — Aula 23', 'n/a', 'Reflexão
 sobre valores e hábitos digitais
 
 Pesquisa de informações
@@ -10551,7 +10551,7 @@ Organizar os registros iniciais dos
 problemas em pastas digitais colaborativas.', NULL),
   ('fundamental', '9', 2, 29, 'Tecnologia e Inovação', NULL, NULL, '(EF09CO06)
 Analisar problemas sociais de sua cidade e estado a partir de ambientes
-digitais, propondo soluções.', NULL, NULL, NULL, 'n/a', 'Conceituação
+digitais, propondo soluções.', NULL, NULL, 'Tecnologia e Inovação — Aula 29', 'n/a', 'Conceituação
 de viés em narrativas digitais.
 
 Análise comparativa de fontes de
@@ -10579,7 +10579,7 @@ Utilizar a IA como ferramenta de
 apoio, mantendo o senso crítico na formulação de soluções.', NULL),
   ('fundamental', '9', 2, 35, 'Tecnologia e Inovação', NULL, NULL, '(EF09CO09)
 Criar ou utilizar conteúdo em meio digital, compreendendo questões éticas
-relacionadas a direitos autorais e de uso de imagem', NULL, NULL, NULL, 'n/a', 'Criação
+relacionadas a direitos autorais e de uso de imagem', NULL, NULL, 'Tecnologia e Inovação — Aula 35', 'n/a', 'Criação
 de conteúdo digital para apresentação de soluções.
 
 Boas práticas de uso de imagens e
@@ -15208,7 +15208,7 @@ implementação.
 (EM13CO08) Entender como mudanças na
 tecnologia afetam a segurança, incluindo novas maneiras de preservar sua
 privacidade e dados pessoais on-line, reportando suspeitas e buscando ajuda
-em situações de risco.', NULL, NULL, NULL, NULL, 'Estruturas
+em situações de risco.', NULL, NULL, 'Programação — Aula 29', NULL, 'Estruturas
 condicionais (if/else)
 
 Tratamento de exceções em
@@ -15243,7 +15243,7 @@ Compreender a importância de limitar
 o tamanho de um hash para eficiência computacional.', NULL),
   ('medio', '3', 2, 35, 'Programação', NULL, NULL, '(EM13C001)
 Explorar e construir a solução de problemas por meio da reutilização de
-partes de soluções existentes.', NULL, NULL, NULL, NULL, 'Ataques
+partes de soluções existentes.', NULL, NULL, 'Programação — Aula 35', NULL, 'Ataques
 de força bruta
 
 Geração de combinações com
@@ -15454,7 +15454,7 @@ importância do consentimento nas relações sexuais.
 • Desmistificar e esclarecer informações sobre prevenção de infecções
 sexualmente transmissíveis (ISTs) e o uso de métodos contraceptivos,
 reforçando a responsabilidade e o respeito nas escolhas sexuais.', NULL, NULL),
-  ('medio', '2', 2, 6, 'Projeto de Vida', NULL, 'Roda de conversa: sexualidade', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+  ('medio', '2', 2, 6, 'Projeto de Vida', NULL, 'Roda de conversa: sexualidade', NULL, NULL, NULL, 'Roda de conversa: sexualidade', NULL, NULL, NULL),
   ('medio', '2', 2, 7, 'Projeto de Vida', NULL, 'Entusiasmo e imaginação criativa.', NULL, NULL, 'De olho nas férias', '• Revisão dos principais tópicos do bimestre.
 
 • Confraternização pré-férias.', '• Revisitar os principais aprendizados do bimestre, promovendo
@@ -15590,7 +15590,7 @@ negócios, artes, etc.) e como cada uma delas contribui para a sociedade e o
 mercado de trabalho.
 
 • Análise dos desafios enfrentados pelos profissionais em suas áreas e as
-oportunidades de carreira e crescimento profissional.', '• Apresentar aos alunos uma visão geral sobre
+o', '• Apresentar aos alunos uma visão geral sobre
 diferentes carreiras, destacando histórias e trajetórias profissionais para
 inspirar escolhas de futuro.
 
@@ -15598,7 +15598,9 @@ inspirar escolhas de futuro.
 ênfase nas habilidades e competências exigidas nas diferentes profissões.', NULL, NULL),
   ('medio', '3', 2, 6, 'Projeto de Vida', NULL, '• Curiosidade para aprender.
 
-• Entusiasmo.', NULL, NULL, 'Roda das profissões: segundo dia – Aula complementar', NULL, NULL, NULL, NULL),
+• Entusiasmo.', NULL, NULL, 'Roda das profissões: segundo dia – Aula complementar', '• Curiosidade para aprender.
+
+• Entusiasmo.', NULL, NULL, NULL),
   ('medio', '3', 2, 7, 'Projeto de Vida', NULL, 'Determinação e responsabilidade.', NULL, NULL, 'Roda das profissões: consolidando minhas perspectivas', 'Reflexão sobre as áreas e profissões que mais chamaram a atenção
 dos alunos e como elas se alinham com seus interesses e objetivos.', '• Refletir sobre as profissões exploradas, conectando as
 informações adquiridas com suas próprias aspirações profissionais.

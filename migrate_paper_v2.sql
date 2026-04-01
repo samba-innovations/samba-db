@@ -28,6 +28,9 @@ CREATE TABLE IF NOT EXISTS samba_paper.aulas (
 CREATE INDEX IF NOT EXISTS ix_aulas_disciplina ON samba_paper.aulas (disciplina_nome);
 CREATE INDEX IF NOT EXISTS ix_aulas_serie_bim  ON samba_paper.aulas (ciclo, serie, bimestre);
 
+-- habilidade_codigo pode conter múltiplos códigos concatenados — usa TEXT
+ALTER TABLE samba_paper.aulas ALTER COLUMN habilidade_codigo TYPE TEXT;
+
 GRANT SELECT ON samba_paper.aulas TO samba_paper_user;
 
 -- ---------------------------------------------------------------------------

@@ -286,18 +286,21 @@ function parseSheet(filePath, sheetName, cicloOverride) {
     let serie = normSerie(get('serie'));
     if (!serie) continue; // skip rows without series
 
+    // titulo is NOT NULL — fallback to unidade_tematica or generic label
+    const tituloRaw = get('titulo') || get('unidade_tematica') || `${sheetName} — Aula ${aulaNum}`;
+
     const record = {
       ciclo,
       serie,
       bimestre,
       aula_num:            aulaNum,
-      disciplina_nome:     sheetName,
+      disciplina_nome:     sheetName.substring(0, 200),
       eixo:                get('eixo'),
       unidade_tematica:    get('unidade_tematica'),
-      habilidade_codigo:   get('habilidade_codigo'),
+      habilidade_codigo:   get('habilidade_codigo'),  // TEXT in DB now
       habilidade_texto:    get('habilidade_texto'),
       objeto_conhecimento: get('objeto_conhecimento'),
-      titulo:              get('titulo'),
+      titulo:              tituloRaw.substring(0, 400),
       conteudo:            get('conteudo'),
       objetivos:           get('objetivos'),
       bloco:               get('bloco'),
