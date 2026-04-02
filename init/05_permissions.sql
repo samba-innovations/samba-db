@@ -2,11 +2,12 @@
 -- 05_permissions.sql — Usuários do banco e permissões por schema
 -- =============================================================================
 -- Princípio do menor privilégio:
---   samba_school_user  → lê e escreve em samba_school (samba-access, SSO tokens)
---   samba_code_user    → lê samba_school, escreve em samba_code
---   samba_edvance_user → lê samba_school, escreve em samba_edvance
---   samba_paper_user   → lê samba_school, escreve em samba_paper
---   postgres           → acesso total (admin)
+--   samba_school_user   → lê e escreve em samba_school (samba-access, SSO tokens)
+--   samba_code_user     → lê samba_school, escreve em samba_code
+--   samba_edvance_user  → lê samba_school, escreve em samba_edvance
+--   samba_paper_user    → lê samba_school, escreve em samba_paper
+--   samba_flourish_user → lê samba_school, escreve em samba_flourish
+--   postgres            → acesso total (admin)
 -- =============================================================================
 
 -- ---------------------------------------------------------------------------
@@ -26,6 +27,9 @@ BEGIN
     END IF;
     IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_paper_user') THEN
         CREATE USER samba_paper_user WITH PASSWORD 'paper2025';
+    END IF;
+    IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'samba_flourish_user') THEN
+        CREATE USER samba_flourish_user WITH PASSWORD 'flourish2025';
     END IF;
 END
 $$;
@@ -130,6 +134,28 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
     GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO samba_school_user;
 ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
     GRANT USAGE, SELECT ON SEQUENCES TO samba_school_user;
+
+-- ---------------------------------------------------------------------------
+-- samba_flourish_user (samba-flourish: lê samba_school, escreve em samba_flourish)
+-- ---------------------------------------------------------------------------
+
+GRANT USAGE ON SCHEMA samba_school   TO samba_flourish_user;
+GRANT USAGE ON SCHEMA samba_flourish TO samba_flourish_user;
+
+-- samba_school: somente leitura
+GRANT SELECT ON ALL TABLES IN SCHEMA samba_school TO samba_flourish_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_school
+    GRANT SELECT ON TABLES TO samba_flourish_user;
+
+-- samba_flourish: acesso total
+GRANT ALL PRIVILEGES ON ALL TABLES    IN SCHEMA samba_flourish TO samba_flourish_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA samba_flourish TO samba_flourish_user;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_flourish
+    GRANT ALL ON TABLES    TO samba_flourish_user;
+ALTER DEFAULT PRIVILEGES IN SCHEMA samba_flourish
+    GRANT ALL ON SEQUENCES TO samba_flourish_user;
 
 -- ---------------------------------------------------------------------------
 -- samba_paper_user (samba-paper: lê samba_school, escreve em samba_paper)
