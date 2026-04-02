@@ -1,0 +1,13 @@
+{
+  "name": "samba-db",
+  "version": "1.0.0",
+  "description": "Database migrations and seed scripts for samba.escolacabral",
+  "private": true,
+  "scripts": {
+    "parse:html": "node parse_curriculum.js > seed_paper_aulas.sql",
+    "parse:pdf": "node parse_pdf_curriculum.js 1>seed_paper_aulas_pdf.sql"
+  },
+  "dependencies": {
+    "pdfjs-dist": "3.11.174"
+  }
+}
