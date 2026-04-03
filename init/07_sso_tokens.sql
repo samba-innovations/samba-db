@@ -10,7 +10,7 @@
 
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";  -- para gen_random_uuid()
 
-CREATE TABLE samba_school.sso_tokens (
+CREATE TABLE IF NOT EXISTS samba_school.sso_tokens (
     id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id    INTEGER     NOT NULL REFERENCES samba_school.users(id) ON DELETE CASCADE,
     target     VARCHAR(50) NOT NULL,   -- sistema destino: 'code', 'edvance', 'flourish'
@@ -19,7 +19,7 @@ CREATE TABLE samba_school.sso_tokens (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE INDEX ix_sso_tokens_user ON samba_school.sso_tokens (user_id);
+CREATE INDEX IF NOT EXISTS ix_sso_tokens_user ON samba_school.sso_tokens (user_id);
 
 -- Permissão para todos os app users
 GRANT SELECT, INSERT, UPDATE ON samba_school.sso_tokens TO samba_code_user, samba_edvance_user;
